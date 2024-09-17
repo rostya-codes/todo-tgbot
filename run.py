@@ -4,7 +4,6 @@ from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 
 from app.user import user
-from app.admin import admin
 
 from config import TOKEN
 
@@ -16,7 +15,7 @@ async def main():
               default=DefaultBotProperties(parse_mode=ParseMode.HTML))
     
     dp = Dispatcher()
-    dp.include_routers(user, admin)
+    dp.include_routers(user)
     dp.startup.register(startup)
     dp.shutdown.register(shutdown)
     

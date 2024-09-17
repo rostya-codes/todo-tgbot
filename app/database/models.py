@@ -15,11 +15,21 @@ class Base(AsyncAttrs, DeclarativeBase):
 
 
 class User(Base):
+
     __tablename__ = 'users'
     
     id: Mapped[int] = mapped_column(primary_key=True)
     tg_id = mapped_column(BigInteger)
     username: Mapped[str] = mapped_column(String(34), default='')
+
+
+class Task(Base):
+
+    __tablename__ = 'tasks'
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    task: Mapped[str] = mapped_column(String(100))
+    user: Mapped[int] = mapped_column(ForeignKey('users.id'))
 
 
 async def async_main():
